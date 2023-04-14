@@ -1,49 +1,70 @@
-Test cases for say_my_name module
-==================================
+# 3-say_my_name.txt
+# Brennan D Baraban <375@holbertonschool.com>
 
-This function print first name followed by last name
+===========================
+How to Use 3-say_my_name.py
+===========================
 
-Usage:
-======
+This modules defines a function ``say_my_name(first_name, last_name="")``.
 
-importing function from the module:
+Usage
+=====
 
-	>>> say_my_name = __import__('3-say_my_name').say_my_name
+``say_my_name(...)`` prints "My name is <first_name> <last_name>".
 
-def say_my_name(first_name, last_name=""):
-    """
-    Prints "My name is <first_name> <last_name>"
+::
 
-    Args:
-        first_name (str): The first name.
-        last_name (str): The last name, if provided. Defaults to an empty string.
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+    >>> say_my_name("Brennan", "Baraban")
+    My name is Brennan Baraban
 
-    Raises:
-        TypeError: If either first_name or last_name is not a string.
+::
 
-    Returns:
-        None
+    >>> say_my_name("Cornelius Maxwell", "Jones II")
+    My name is Cornelius Maxwell Jones II
 
-    Examples:
-        >>> say_my_name("John", "Doe")
-        My name is John Doe
-        >>> say_my_name("Alice")
-        My name is Alice
-        >>> say_my_name(123, "Smith")
-        Traceback (most recent call last):
-        ...
-        TypeError: first_name must be a string
-        >>> say_my_name("Bob", 456)
-        Traceback (most recent call last):
-        ...
-        TypeError: last_name must be a string
-    """
-    if not isinstance(first_name, str):
-        raise TypeError("first_name must be a string")
-    if last_name and not isinstance(last_name, str):
-        raise TypeError("last_name must be a string")
-    
-    if last_name:
-        print(f"My name is {first_name} {last_name}")
-    else:
-        print(f"My name is {first_name}")
+The parameter ```last_name``` is optional. If no last name is provided,
+an empty string is printed instead.
+
+::
+
+    >>> say_my_name("Brennan")
+    My name is Brennan 
+
+Invalid Names
+=============
+
+The parameters ``first_name`` and ``last_name``` must be strings. Otherwise,
+a TypeError is raised.
+
+::
+
+    >>> say_my_name(6, "James")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+::
+
+    >>> say_my_name("LeBron", ["Cavs", "Lakers", "Heat"])
+    Traceback (most recent call last):
+    TypeError: last_name must be a string
+
+::
+
+    >>> say_my_name({"LeBron": 6, "James": 23}, 7.7)
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+::
+
+    >>> say_my_name(None)
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+At least one name must be provided.
+
+::
+
+    >>> say_my_name()
+    Traceback (most recent call last):
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
